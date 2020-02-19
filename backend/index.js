@@ -28,13 +28,13 @@ app.post('/createUser', (req, res) => {
       username: req.body.username,
       password: req.body.password
     })
-    fs.writeFile('./backend/data/data.json','Hello', err=>{
-      if(!err){
-        console.log('in NB bitcoid.json has been updated');
-      }else{
-        console.log('couldn\'t write to file');
-      }
-    })
+
+
+fs.writeFile('./data/data.txt', req.body.username+' '+req.body.password, function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+
     res.send(`Add user: ${req.body.username}, with password: ${req.body.password}`)
 })
 
