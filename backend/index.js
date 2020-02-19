@@ -1,4 +1,5 @@
 const express = require('express')
+const fs = require('fs')
 const bodyParser = require('body-parser')
 const store = require('./store')
 const cors = require('cors');
@@ -26,6 +27,13 @@ app.post('/createUser', (req, res) => {
   store.createUser({
       username: req.body.username,
       password: req.body.password
+    })
+    fs.writeFile('./backend/data/data.json','Hello', err=>{
+      if(!err){
+        console.log('in NB bitcoid.json has been updated');
+      }else{
+        console.log('couldn\'t write to file');
+      }
     })
     res.send(`Add user: ${req.body.username}, with password: ${req.body.password}`)
 })
